@@ -32,10 +32,10 @@ app.post('/hospital', (req, res) => {
         estado:req.body.estado
     }
 
-    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${cliente.rua},+${cliente.bairro},+${cliente.estado}&key=AIzaSyCfhWkrDHxzTkxymVOBS-CGGbT5Md1nzeU`;
+    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${hospitais.rua},+${hospitais.bairro},+${hospitais.estado}&key=AIzaSyCfhWkrDHxzTkxymVOBS-CGGbT5Md1nzeU`;
 
     request(url, (err, resposta) => {
-        let dados = JSON.parse(resposta);
+        let dados = JSON.parse(resposta.body);
         
         hospitais.latitude = dados.results[0].geometry.location.lat;
         hospitais.longitude = dados.results[0].geometry.location.lng;
